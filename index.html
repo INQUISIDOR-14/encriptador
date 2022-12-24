@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Encriptador de texto</title>
+    <link rel="stylesheet" href="reset.css">
+
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+
+        <input type="text" id="texto"><br>
+        <button id="encriptar">Encriptar</button>
+        <button id="desencriptar">Desencriptar</button>
+        <input type="text" id="final"><br>
+        <script>
+            var newSentence;
+            const claveEncry = {
+                a: 'ai',
+                e: 'enter',
+                i: 'imes',
+                o: 'ober',
+                u: 'ufat'
+
+            };
+            const invclaveEncry = {
+                ai: 'a',
+                enter: 'e',
+                imes: 'i',
+                ober: 'o',
+                ufat: 'u'
+
+            };
+            function encriptar() {
+                var texto = document.getElementById("texto").value;
+                const regex = new RegExp(Object.keys(claveEncry).join('|'), 'gi');
+
+                const newSentence = texto.replace(regex, (matchedWord) => {
+                    return claveEncry[matchedWord.toLowerCase()];
+                });
+                document.getElementById("final").value = newSentence;
+            }
+
+            function desencriptar() {
+                var texto = document.getElementById("texto").value;
+                const regex = new RegExp(Object.keys(invclaveEncry).join('|'), 'gi');
+
+                const newSentence = texto.replace(regex, (matchedWord) => {
+                    return invclaveEncry[matchedWord.toLowerCase()];
+                });
+                document.getElementById("final").value = newSentence;
+            }
+
+            document.getElementById("encriptar").onclick = encriptar;
+            document.getElementById("desencriptar").onclick = desencriptar;
+
+
+        </script>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
