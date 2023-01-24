@@ -6,21 +6,48 @@
     <meta charset="UTF-8">
     <title>Encriptador de texto</title>
     <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+
 
 </head>
 
 <body>
     <header>
-
+        <div class="logo">
+            <img src="imagenes/Logo.svg" alt="Logo Aura">
+        </div>
     </header>
     <main>
+        <section id="seccion">
 
-        <input type="text" id="texto"><br>
-        <button id="encriptar">Encriptar</button>
-        <button id="desencriptar">Desencriptar</button>
-        <input type="text" id="final"><br>
+            <div id="encriptamiento">
+                <textarea id="textoBase" placeholder="Ingrese el texto aqui"></textarea>
+                <small> Solo letras minúsculas y sin acentos</small>
+                <div id="botones">
+                    <button id="encriptar">Encriptar</button>
+                    <button id="desencriptar">Desencriptar</button>
+                </div>
+            </div>
+            <div id="resultado">
+                <div id="info">
+                    <div id="imagenEspera">
+                        <img src="imagenes/item-grup-1.svg" alt="imagen de espera antes de la encriptacion">
+                    </div>
+                    <div id="textoEspera">
+                        <span>Ningún mensaje fue encontrado</span>
+                        <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+                    </div>
+                </div>
+                <div id="resultadoEncrypt">
+                    <p id="textoFinal"></p>
+                    <button id="botonCopiar">Copiar</button>
+                </div>
+            </div>
+
+        </section>
+
         <script>
-            var newSentence;
+            const condicion = new RegExp(/^[A-Za-z\s]+$/g);
             const claveEncry = {
                 a: 'ai',
                 e: 'enter',
@@ -37,28 +64,54 @@
                 ufat: 'u'
 
             };
+            function condicional(text) {
+                const condicion = /[A-Z+áéíóúÁÉÍÓÚ]/g;
+                return condicion.test(text);
+            }
+            function mResultados(text) {
+                const info = document.getElementById("info");
+                const resultadoEncrypt = document.getElementById("resultadoEncrypt");
+                const textoFinal = document.getElementById("textoFinal");
+                info.style.display = 'none';
+                resultadoEncrypt.style.display = 'flex';
+                textoFinal.innerHTML = text;
+            }
             function encriptar() {
-                var texto = document.getElementById("texto").value;
-                const regex = new RegExp(Object.keys(claveEncry).join('|'), 'gi');
+                if (!condicional(document.getElementById("textoBase").value)) {
+                    const texto = document.getElementById("textoBase").value;
+                    const patron = new RegExp(Object.keys(claveEncry).join('|'), 'gi');
 
-                const newSentence = texto.replace(regex, (matchedWord) => {
-                    return claveEncry[matchedWord.toLowerCase()];
-                });
-                document.getElementById("final").value = newSentence;
+                    const fraseEncrypt = texto.replace(patron, (matchedWord) => {
+                        return claveEncry[matchedWord.toLowerCase()];
+                    });
+                    mResultados(fraseEncrypt);
+                } else {
+                    alert("Solo letras minúsculas y sin acentos");
+                }
+
+
+
             }
 
             function desencriptar() {
-                var texto = document.getElementById("texto").value;
-                const regex = new RegExp(Object.keys(invclaveEncry).join('|'), 'gi');
+                if (!condicional(document.getElementById("textoBase").value)) {
+                    const texto = document.getElementById("textoBase").value;
+                    const patron = new RegExp(Object.keys(invclaveEncry).join('|'), 'gi');
 
-                const newSentence = texto.replace(regex, (matchedWord) => {
-                    return invclaveEncry[matchedWord.toLowerCase()];
-                });
-                document.getElementById("final").value = newSentence;
+                    const fraseEncrypt = texto.replace(patron, (matchedWord) => {
+                        return invclaveEncry[matchedWord.toLowerCase()];
+                    });
+                    mResultados(fraseEncrypt);
+                } else {
+                    alert("Solo letras minúsculas y sin acentos");
+                }
             }
-
+            function portapapeles() {
+                navigator.clipboard.writeText(textoFinal.innerHTML).then();
+            }
             document.getElementById("encriptar").onclick = encriptar;
             document.getElementById("desencriptar").onclick = desencriptar;
+            document.getElementById("botonCopiar").onclick = portapapeles;
 
 
         </script>

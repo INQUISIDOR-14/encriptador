@@ -1,0 +1,207 @@
+header{
+    background-color: #F3F5FC;
+}
+.logo{
+    width: 10%;
+    padding: 10px;
+    
+}
+:root{
+    --colorfondo:  #F3F5FC;
+    --azul: #0A3871;
+    --colorletras: #495057;;
+}
+
+main{
+    min-height: 100vh;
+    background-color: var(--colorfondo);
+    padding: 10% 0%;
+}
+#seccion{
+    padding: 0 5%;
+}
+#encriptamiento{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 5%;
+}
+#textoBase{
+    width: 100%;
+    height: 200px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 150%;
+    color: var(--azul);
+    border: 0;
+    resize: none;
+    outline: none;
+    background-color: var(--colorfondo);
+}
+#textoBase::placeholder{
+    color: var(--azul);
+}
+#encriptamiento small{
+    color: var(--colorletras);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+#botones{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#encriptar{
+    width: 332px;
+    height: 67px;
+    border: 1px solid var(--azul);
+    color: #FFFFFF;
+    background: var(--azul);
+    border-radius: 24px;
+}
+#desencriptar{
+    width: 332px;
+    height: 67px;
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    border-radius: 24px;
+    margin: 20px 0;
+    background-color: transparent;
+}
+#resultado{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 24px 32px -8px rgba(0, 0, 0, 0.08);
+    border-radius: 32px;
+    padding: 32px;
+    margin: auto;
+}
+#resultado div{
+    width: 100%;
+}
+#imagenEspera{
+    display: none;
+}
+#textoEspera span{
+    display: block;
+    color: #343A40;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#textoEspera p{
+    color: var(--colorletras);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    margin: 0;
+    padding: 0 10%;
+}
+#resultadoEncrypt{
+    display: none;
+    flex-direction: column;
+}
+#resultadoEncrypt p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 150%;
+    color: var(--colorletras);
+}
+#botonCopiar{
+    display: block;
+    margin: auto;
+    width: 279px;
+    height: 67px;
+    background-color: transparent;
+    border: 1px solid var(--azul);
+    border-radius: 24px;
+    margin-top: 35px;
+    color: var(--azul);
+}
+#encriptar:hover, #desencriptar:hover, #botonCopiar:hover{
+    transform: scale(105%);
+    -webkit-transform: scale(105%);
+    -moz-transform: scale(105%);
+    -ms-transform: scale(105%);
+    -o-transform: scale(105%);
+}
+@media screen and (min-width:768px){
+    #textoBase{
+        height: 550px;
+    }
+    #botones{
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    #botonCopiar{
+        width: 100%;
+    }
+}
+@media screen and (min-width:1024px){
+    main{
+        padding: 0 0%;
+    }
+    #encriptamiento{
+        padding-left: 10%;
+    }
+    #seccion{
+        display: flex;
+    }
+    #resultado{
+        position: relative;
+        max-width: 400px;
+        height: 560px;
+        top: -45px;
+    }
+    #textoBase{
+        width: 580px;
+        height: 360px;
+        margin-bottom: 10px;
+    }
+    #imagenEspera{
+        display: block;
+        width: 100%;
+    }
+    #imagenEspera img{
+        object-fit: contain;
+        width: 100%;
+    }
+    #encriptar{
+        width: 280px;
+        height: 60px;
+    }
+    #desencriptar{
+        margin-left: 10%;
+        width: 280px;
+        height: 60px;
+    }
+    #botones{
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-bottom: 40px;
+    }
+    #resultadoEncrypt{
+        height: 100%;
+        word-wrap: break-word;
+    }
+    #resultadoEncrypt-p{
+        height: 85%;
+    }
+}
